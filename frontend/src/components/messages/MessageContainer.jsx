@@ -4,6 +4,7 @@ import useConversation from '../../zustand/useConversation'
 import MessageInput from "./MessageInput"
 import Messages from "./Messages"
 import { useEffect } from 'react'
+import { useAuthContext } from '../../context/AuthContext'
 
 const MessageContainer = () => {
   const {selectedConversation, setSelectedConversation} = useConversation();
@@ -30,10 +31,11 @@ const MessageContainer = () => {
 }
 
 const NoChatSelected = () => {
+  const {authUser}= useAuthContext()
   return (
     <div className="flex justify-center items-center h-full w-full">
-      <div className='flex flex-col gap-2 px-4 text-center sm:text-lg md:text-xl text-gray-200 font-semibold'>
-        <p>Welcome 👋 Amartya</p>
+      <div className='flex flex-col gap-2 px-4 items-center text-center sm:text-lg md:text-xl text-gray-200 font-semibold'>
+        <p>Welcome 👋 {authUser.fullName}</p>
         <p>Select a chat to start messaging</p>
         <TiMessages className='text-3xl md:text-6xl text-center' />
       </div>
