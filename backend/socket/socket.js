@@ -1,4 +1,4 @@
-import {Server} from 'socket.io'
+import { Server } from 'socket.io'
 import http from 'http'
 import express from 'express'
 
@@ -11,11 +11,12 @@ const io = new Server(server, {
   }
 })
 
+const userSocketMap = {}; //{userId: socketId}
+
 export const getReceiverSocketId = (receiverId) => {
   return userSocketMap[receiverId];
 }
 
-const userSocketMap = {}; //{userId: socketId}
 
 io.on('connection', (socket) =>{
   console.log("a user is connected:", socket.id)
